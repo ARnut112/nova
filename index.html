@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photographer Portfolio</title>
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Swiper CSS (สำหรับทำ สไลด์ Facebook) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #0f0f0f;
+            color: #e5e5e5;
+        }
+        /* Custom Scrollbar สำหรับ iframe สไลด์ */
+        .swiper-slide {
+            height: auto;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-neutral-800 selection:text-white">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 bg-[#0f0f0f]/90 backdrop-blur-md border-b border-neutral-800">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold tracking-wider text-white uppercase">PHOTOGRAPHER</a>
+            <nav class="hidden md:flex space-x-8 text-sm text-neutral-400 font-light">
+                <a href="#portfolio" class="hover:text-white transition">Portfolio</a>
+                <a href="#experiences" class="hover:text-white transition">Experiences</a>
+                <a href="#about" class="hover:text-white transition">About</a>
+                <a href="#contact" class="hover:text-white transition">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="max-w-7xl mx-auto px-6 pt-16 pb-12 text-center md:text-left">
+        <h1 class="text-4xl md:text-6xl font-extralight tracking-tight text-white mb-4">
+            CAPTURING <span class="font-semibold italic">MOMENTS</span>
+        </h1>
+        <p class="text-neutral-400 max-w-xl text-sm md:text-base font-light">
+            พื้นที่รวบรวมผลงานภาพถ่าย มู้ดแอนด์โทน และบรรยากาศในแต่ละช่วงเวลา
+        </p>
+    </section>
+
+    <!-- 1. Portfolio Section (Category Filter) -->
+    <section id="portfolio" class="max-w-7xl mx-auto px-6 py-8">
+        <!-- Category Filter Buttons -->
+        <div class="flex flex-wrap gap-2 md:gap-4 mb-8 border-b border-neutral-800 pb-4">
+            <button onclick="filterGallery('all')" class="filter-btn active px-4 py-2 rounded-full text-sm font-light bg-white text-black transition">All Work</button>
+            <button onclick="filterGallery('portrait')" class="filter-btn px-4 py-2 rounded-full text-sm font-light text-neutral-400 hover:text-white transition">Portrait</button>
+            <button onclick="filterGallery('event')" class="filter-btn px-4 py-2 rounded-full text-sm font-light text-neutral-400 hover:text-white transition">Event</button>
+            <button onclick="filterGallery('commercial')" class="filter-btn px-4 py-2 rounded-full text-sm font-light text-neutral-400 hover:text-white transition">Commercial</button>
+            <button onclick="filterGallery('street')" class="filter-btn px-4 py-2 rounded-full text-sm font-light text-neutral-400 hover:text-white transition">Street</button>
+        </div>
+
+        <!-- Image Gallery Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="gallery-grid">
+            
+            <!-- Item 1: Event -->
+            <div class="gallery-item event group relative aspect-[4/5] bg-neutral-900 rounded-lg overflow-hidden cursor-pointer" onclick="openLightbox(0)">
+                <img src="images/NUT_8069.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 ease-out" alt="Event Photo">
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-neutral-300">Event</span>
+                        <h3 class="text-lg font-medium text-white">Graduation Day</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2: Portrait -->
+            <div class="gallery-item portrait group relative aspect-[4/5] bg-neutral-900 rounded-lg overflow-hidden cursor-pointer" onclick="openLightbox(1)">
+                <img src="images/NUT_4225_pp.JPG" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 ease-out" alt="Portrait Photo">
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-neutral-300">Portrait</span>
+                        <h3 class="text-lg font-medium text-white">Natural Light Studio</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3: Commercial -->
+            <div class="gallery-item commercial group relative aspect-[4/5] bg-neutral-900 rounded-lg overflow-hidden cursor-pointer" onclick="openLightbox(2)">
+                <img src="images/NUT_7017.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 ease-out" alt="Commercial Photo">
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-neutral-300">Commercial</span>
+                        <h3 class="text-lg font-medium text-white">Lookbook Collection</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 4: Street -->
+            <div class="gallery-item street group relative aspect-[4/5] bg-neutral-900 rounded-lg overflow-hidden cursor-pointer" onclick="openLightbox(3)">
+                <img src="images/OPL_3476.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 ease-out" alt="Street Photo">
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-neutral-300">Street</span>
+                        <h3 class="text-lg font-medium text-white">Night Life Vibes</h3>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 2. Experiences Section (Facebook Embedded Slider) -->
+    <section id="experiences" class="max-w-7xl mx-auto px-6 py-16 border-t border-neutral-900">
+        <div class="mb-8">
+            <h2 class="text-2xl md:text-3xl font-light text-white">Experiences</h2>
+            <p class="text-neutral-500 text-sm mt-1">ผลงานถ่ายภาพงานจริงที่เคยโพสต์ลงบน Facebook (สไลด์เลื่อนดูโพสต์ได้)</p>
+        </div>
+
+        <!-- Swiper Slider -->
+        <div class="swiper fb-swiper py-4">
+            <div class="swiper-wrapper">
+                
+                <!-- FB Post Slide 1 -->
+                <div class="swiper-slide w-[340px] md:w-[500px]">
+                    <div class="bg-neutral-900 rounded-xl p-2 border border-neutral-800 shadow-xl overflow-hidden w-full flex justify-center">
+                        <!-- นำโค้ด iframe จาก Facebook มาวางตรงนี้ -->
+                        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fxanath.chun.xarmn%2Fposts%2Fpfbid02hH5EEeAbfqAEZze5bQovL2jukat9Qo9YhVNTs3pvgHX3oPvrcStHGTDiKpEK8EMHl&show_text=true&width=500" width="500" height="631" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                    </div>
+                </div>
+
+                <!-- FB Post Slide 2 -->
+                <div class="swiper-slide w-[340px] md:w-[500px]">
+                    <div class="bg-neutral-900 rounded-xl p-2 border border-neutral-800 shadow-xl overflow-hidden w-full flex justify-center">
+                        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fxanath.chun.xarmn%2Fposts%2Fpfbid02nhP3P9w5MXXQm6CNwacNBALEUkGtkoT86TYm72uyo48U8Gjaywt2yc9sXADroGEdl&show_text=true&width=500" width="500" height="736" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                    </div>
+                </div>
+
+                <!-- FB Post Slide 3 -->
+                <div class="swiper-slide w-[340px] md:w-[500px]">
+                    <div class="bg-neutral-900 rounded-xl p-2 border border-neutral-800 shadow-xl overflow-hidden w-full flex justify-center">
+                        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fxanath.chun.xarmn%2Fposts%2Fpfbid0Bze3mD4rwKdmkZqhsB8taGnjroKZqgoE6aio91Wq1yEJ1gEeAq4VoMkMR86B3VE1l&show_text=true&width=500" width="500" height="758" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Pagination / Navigation -->
+            <div class="swiper-pagination mt-6"></div>
+        </div>
+    </section>
+
+    <!-- Footer / Contact -->
+    <footer id="contact" class="border-t border-neutral-800 py-12 text-center text-neutral-500 text-sm">
+        <p class="mb-2">Interested in working together?</p>
+        <p class="text-white font-medium text-lg mb-6">Line: arnut369 | FB: อาณัฐ ชื่นอารมณ์</p>
+        <p class="text-xs text-neutral-600">&copy; 2026 Photographer Portfolio. All rights reserved.</p>
+    </footer>
+
+    <!-- Lightbox Modal (ขยายรูปดูรูปเต็ม) -->
+    <div id="lightbox" class="fixed inset-0 z-50 bg-black/95 hidden items-center justify-center p-4">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white text-3xl">&times;</button>
+        <img id="lightbox-img" src="" class="max-h-[85vh] max-w-[90vw] object-contain rounded-md" alt="Enlarged Image">
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // --- 1. Category Filter Script ---
+        function filterGallery(category) {
+            const items = document.querySelectorAll('.gallery-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            // เปลี่ยนสถานะปุ่ม
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-white', 'text-black');
+                btn.classList.add('text-neutral-400');
+            });
+            event.currentTarget.classList.add('bg-white', 'text-black');
+            event.currentTarget.classList.remove('text-neutral-400');
+
+            // ซ่อน/แสดง รูปตามหมวดหมู่
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // --- 2. Swiper Slider Script (สำหรับสไลด์ Facebook) ---
+        const swiper = new Swiper('.fb-swiper', {
+            slidesPerView: 'auto',
+            spaceBetween: 24,
+            grabCursor: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+        });
+
+        function openLightbox(index) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = images[index];
+            lightbox.classList.remove('hidden');
+            lightbox.classList.add('flex');
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.add('hidden');
+            lightbox.classList.remove('flex');
+        }
+    </script>
+</body>
+</html>
